@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Guess The Number</title>
+</head>
+<body class="bg-slate-950">
+    <div id="wrapper" class="text-white flex flex-col items-center justify-center h-screen">
+        <h1 class="text-white text-3xl font-bold z-10">Number Guessing</h1>
+        <div class="bg-transparent border border-white-400 rounded-md shadow-md p-4 mt-4 h-auto">
+            <p class="text-xl">Try and guess a random number between 1 and 100.</p>
+            <p class="text-red-400 text-xl">You have 10 attempts to guess the right number.</p>
+            </br>
+            <div class="flex flex-col items-center">
+                <form class="form flex flex-col items-center space-y-4">
+                    <label for="guessField" id="guess" class="font-semibold text-2xl">Guess a number</label>
+                    <input type="text" id="guessField" class="guessField border border-gray-400 rounded px-4 py-2 text-black w-40 h-16 text-center text-2xl font-semibold">
+                    <input type="submit" id="subt" value="Submit guess" class="guessSubmit border border-gray-400 rounded px-4 py-2 text-green-300">
+                </form>
+            </div>
+        
+            <div class="resultParas mt-4">
+                <p class="text-xl">Previous Guesses: <span class="guesses text-xl"></span></p>
+                <p class="text-xl">Guesses Remaining: <span class="lastResult text-xl">10</span></p>
+                <p class="lowOrHi text-white"></p>
+            </div>
+        </div>
+      </div>
+      <script src="main.js"></script>
+</body>
+</html>
