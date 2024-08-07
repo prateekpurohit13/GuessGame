@@ -52,9 +52,9 @@ function checkGuess(guess) {
 `);
     endGame();
   } else if (guess < randomNumber) {
-    displayMessage(`Number is low`);
+    displayMessage(`Your Number is low`);
   } else if (guess > randomNumber) {
-    displayMessage(`Number is High`);
+    displayMessage(`Your Number is High`);
   }
 }
 
