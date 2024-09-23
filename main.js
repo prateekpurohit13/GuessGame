@@ -25,18 +25,26 @@ if (playGame) {
 
 function validateGuess(guess) {
   if (isNaN(guess)) {
-    alert('PLease enter a valid number');
+    alert('Please enter a valid number');
   } else if (guess < 1) {
-    alert('PLease enter a number more than 1');
+    alert('Please enter a number more than 1');
   } else if (guess > 100) {
-    alert('PLease enter a  number less than 100');
+    alert('Please enter a  number less than 100');
   } else {
     prevGuess.push(guess);
-    checkGuess(guess);
-    if (numGuess > 10) {
+
+    if (numGuess === 10) {
+      if (guess === randomNumber) {
+        displayGuess(guess);
+        displayMessage(`You guessed it right. Here's your reward:-
+          Um Ihren Besuch wie den ausruhen,
+          Ein Urlaub des Lichts,
+          Und alle dein Freuden sind mein Gäste.
+    `);}else{
       displayGuess(guess);
-      displayMessage(`Game Over. Random number was ${randomNumber}`);
+      displayMessage(`Game Over. Random number was ${randomNumber}`);}
       endGame();
+
     } else {
       displayGuess(guess);
       checkGuess(guess);
