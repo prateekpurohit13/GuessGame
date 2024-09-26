@@ -13,14 +13,15 @@ let prevGuess = [];
 let numGuess = 1;
 let playGame = true;
 
-const hiddenMessage1 = 'SG93IGRvIHlvdSBjaG9vc2UgYmV0d2VlbiBicmFuZHMgb2YgcGVhcz8gSSdtIGNyb3VjaGVkIG92ZXIgYSBmcmVlemVyIGluIHRoZSBzdXBlcm1hcmtldCBhbmQgdGhlcmUncyBubyBnb2luZyBiYWNrLiBBcyBJIHB1c2gsIEkgY2FudCBzdG9wIGltYWdpbmluZyB0aGUgdHJvbGxleSBhcyBhIHB1c2hjYWlyLg==';
+const hiddenMessage1 = 'SG93IGRvIHlvdSBjaG9vc2UgYmV0d2VlbiBicmFuZHMgb2YgcGVhcz8gSSdtIGNyb3VjaGVkIG92ZXIgYSBmcmVlemVyIGluIHRoZSBzdXBlcm1hcmtldCBhbmQgdGhlcmUncyBubyBnb2luZyBiYWNrLiBBcyBJIHB1c2gsIEkgY2FudCBzdG9wIGltYWdpbmluZyB0aGUgdHJvbGxleSBhcyBhIHB1c2hjYWlyLg0KDQpBcyBJIHB1c2gsIEkgYW1hZ2luZSB0aGUgdHJvbGxleSBhcyBhIHB1c2hjaGFpci4gRGFubnkgYXMgdGhlcmUsIHNsZWVwaW5nIHdpdGggaGlzIHRodW1iIGluIGhpcyBtb3V0aCwgZ2VudGx5IHJ1YmJpbmcgdGhlIGJyaWRnZSBvZiBoaXMgaG9zZSB3aXRoIGhpcyBmb3JlaWZpbmdlci4gSSBpbWFnaW5lIHRoYXQgVmljdG9yaWEgaXMgYSBmZXcgYWlzbGVzIGRvd24sIGZlZWxpbmcgZm9yIGEgZGVsaWNpb3VzIG1lbG9uIG9yIGxvYWRpbmcgYSBzZWNvbmQgdHJvbGxleSB3aXRoIG5hcHBpZXMgYW5kIGZvcm11bGEgZm9yIHRoZSBiYWJ5Lk5MaW5lLg0KDQpXaGVuIEkgcmVhY2ggdGhlIHRpbGxzLCBJJ2xsIGpvaW4gdGhlIG5lYXJlc3QgcXVldWUsIHdhaXRpbmcgZm9yIG15IHR1cm4gd2hpbGUgdGhlIHdvbWFuIGluIGZyb250IGxvYWRzIHRoZSBjb252ZXlvciBiZWx0IHdpdGggdGhlIHdlZWtseSBzaG9wIGZvciBoZXIgZmFtaWx5OiBwYWNrZXQgYWZ0ZXIgcGFja2V0IG9mIGNlcmVhbCwgcG93ZGVyIGZvciBtYWtpbmcgY2hvY29sYXRlIG1pbGssIG1vcmUgYmFncyBvZiBjcmlzcHMgdGhhbiB5b3UndCBuZWVkIHRvIGZlZWQgYW4gYXJteS4gU2hlJ3MgbW92aW5nIGF0IGluY3JlZGlibGUgc3BlZWQsIGxpa2UgYSBjb252ZXlvciBiZWx0IGhlcnNlbGYsIGdyYWJiaW5nIHRocmVlIGl0ZW1zIGF0IG9uY2UuIEkgbG9vayB0byBteSByaWdodCBhbmQgc2VlIHRoYXQgdGhlIHRpbGwgbmV4dCB0byBtZSBpcyBhIG11Y2ggc2hvcnRlciBxdWV1ZSwgYnV0IEknbSBpbiBubyBydXNoIHRvIGdldCBob21lLg==';
+
 const hiddenMessage2 = 'VW0gSXJyZW4gQmVzdsOkY2sgd2llIGRlbiBhdXNydWhlbiwKRWluIFVybGF1YiBkZXMgTGljaHRzLApVbmQgYWxsZSBkZWluIEZyZXVkbGVuIHNpbmQgZWluZSBHZcOkc3RlLg==';
 
 if (playGame) {
   submit.addEventListener('click', function (e) {
     e.preventDefault();
     const guess = parseInt(userInput.value);
-    console.log(guess); // Debugging (can be removed)
+    console.log(guess); 
     validateGuess(guess);
   });
 }
@@ -70,7 +71,14 @@ function displayGuess(guess) {
 }
 
 function displayMessage(message) {
-  lowOrHi.innerHTML = `<h2 class="text-xl">${message}</h2>`;
+  const paragraphs = message.split('\n\n'); 
+  lowOrHi.innerHTML = ''; 
+  paragraphs.forEach((paragraph) => {
+    const paraElement = document.createElement('p');
+    paraElement.className = 'text-xl mb-4'; 
+    paraElement.textContent = paragraph;
+    lowOrHi.appendChild(paraElement); 
+  });
 }
 
 function endGame() {
