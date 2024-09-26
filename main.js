@@ -13,15 +13,14 @@ let prevGuess = [];
 let numGuess = 1;
 let playGame = true;
 
-const hiddenMessage1 = 'SG93IGRvIHlvdSBjaG9vc2UgYmV0d2VlbiBicmFuZHMgb2YgcGVhcz8gSSdtIGNyb3VjaGVkIG92ZXIgYSBmcmVlemVyIGluIHRoZSBzdXBlcm1hcmtldCBhbmQgdGhlcmUncyBubyBnb2luZyBiYWNrLiBBcyBJIHB1c2gsIEkgY2FudCBzdG9wIGltYWdpbmluZyB0aGUgdHJvbGxleSBhcyBhIHB1c2hjYWlyLg0KDQpBcyBJIHB1c2gsIEkgYW1hZ2luZSB0aGUgdHJvbGxleSBhcyBhIHB1c2hjaGFpci4gRGFubnkgYXMgdGhlcmUsIHNsZWVwaW5nIHdpdGggaGlzIHRodW1iIGluIGhpcyBtb3V0aCwgZ2VudGx5IHJ1YmJpbmcgdGhlIGJyaWRnZSBvZiBoaXMgaG9zZSB3aXRoIGhpcyBmb3JlaWZpbmdlci4gSSBpbWFnaW5lIHRoYXQgVmljdG9yaWEgaXMgYSBmZXcgYWlzbGVzIGRvd24sIGZlZWxpbmcgZm9yIGEgZGVsaWNpb3VzIG1lbG9uIG9yIGxvYWRpbmcgYSBzZWNvbmQgdHJvbGxleSB3aXRoIG5hcHBpZXMgYW5kIGZvcm11bGEgZm9yIHRoZSBiYWJ5Lk5MaW5lLg0KDQpXaGVuIEkgcmVhY2ggdGhlIHRpbGxzLCBJJ2xsIGpvaW4gdGhlIG5lYXJlc3QgcXVldWUsIHdhaXRpbmcgZm9yIG15IHR1cm4gd2hpbGUgdGhlIHdvbWFuIGluIGZyb250IGxvYWRzIHRoZSBjb252ZXlvciBiZWx0IHdpdGggdGhlIHdlZWtseSBzaG9wIGZvciBoZXIgZmFtaWx5OiBwYWNrZXQgYWZ0ZXIgcGFja2V0IG9mIGNlcmVhbCwgcG93ZGVyIGZvciBtYWtpbmcgY2hvY29sYXRlIG1pbGssIG1vcmUgYmFncyBvZiBjcmlzcHMgdGhhbiB5b3UndCBuZWVkIHRvIGZlZWQgYW4gYXJteS4gU2hlJ3MgbW92aW5nIGF0IGluY3JlZGlibGUgc3BlZWQsIGxpa2UgYSBjb252ZXlvciBiZWx0IGhlcnNlbGYsIGdyYWJiaW5nIHRocmVlIGl0ZW1zIGF0IG9uY2UuIEkgbG9vayB0byBteSByaWdodCBhbmQgc2VlIHRoYXQgdGhlIHRpbGwgbmV4dCB0byBtZSBpcyBhIG11Y2ggc2hvcnRlciBxdWV1ZSwgYnV0IEknbSBpbiBubyBydXNoIHRvIGdldCBob21lLg==';
-
-const hiddenMessage2 = 'VW0gSXJyZW4gQmVzdsOkY2sgd2llIGRlbiBhdXNydWhlbiwKRWluIFVybGF1YiBkZXMgTGljaHRzLApVbmQgYWxsZSBkZWluIEZyZXVkbGVuIHNpbmQgZWluZSBHZcOkc3RlLg==';
+//const hiddenMessage1 = 'SG93IGRvIHlvdSBjaG9vc2UgYmV0d2VlbiBicmFuZHMgb2YgcGVhcz8gSSdtIGNyb3VjaGVkIG92ZXIgYSBmcmVlemVyIGluIHRoZSBzdXBlcm1hcmtldCBhbmQgdGhlcmUncyBubyBnb2luZyBiYWNrLiBBcyBJIHB1c2gsIEkgY2FudCBzdG9wIGltYWdpbmluZyB0aGUgdHJvbGxleSBhcyBhIHB1c2hjYWlyLg==';
+const hiddenMessage1 = 'WW91IEd1ZXNzZWQgaXQgcmlnaHQhIEhlcmUncyB5b3VyIHJld2FyZDotCkhvdyBkbyB5b3UgY2hvb3NlIGJldHdlZW4gYnJhbmRzIG9mIHBlYXM/IEknbSBjcm91Y2hlZCBvdmVyIGEgZnJlZXplciBpbiB0aGUgc3VwZXJtYXJrZXQgYW5kIEknbSBhdCBhbiBpbXBhc3NlLiBFdmVyeSBzbWFsbCBkZWNpc2lvbiBub3cgc2VlbXMgYm90aCB0cml2aWFsIGFuZCBpbnN1cm1vdW50YWJsZS4gSSBzZWUgdGhlIHdyaW5rbGVkLCBwYWxlLCByaW5nbGVzcyBoYW5kIG9mIGEgc3RyYW5nZXIgcmVhY2ggZnJvbSB1bmRlciBteSBzaG91bGRlciBhbmQgcGljayB1cCB0aGUgYmlnZ2VzdCBwYWNrZXQsIHNvIEkgZG8gdGhlIHNhbWUuIEkgcGxhY2UgaXQgaW4gdGhlIHRyb2xsZXksIHJldmVyc2UgYW5kIGhlYWQgdG93YXJkcyB0aGUgY2hlY2tvdXQuCgpBcyBJIHB1c2gsIEkgaW1hZ2luZSB0aGUgdHJvbGxleSBhcyBhIHB1c2hjaGFpci4gRGFubnkgaXMgaW4gdGhlcmUsIHNsZWVwaW5nIHdpdGggaGlzIHRodW1iIGluIGhpc21vdXRoLCBnZW50bHkgcnViYmluZyB0aGUgYnJpZGdlIG9mIGhpcyBub3NlIHdpdGggaGlzIGZvcmVmaW5nZXIuIEkgaW1hZ2luZSB0aGF0IFZpY3RvcmlhIGlzIGEgZmV3IGFpc2xlcyBkb3duLCBmZWVsaW5nIGZvciBhIHBlcmZlY3RseSByaXBlIG1lbG9uIG9yIGxvYWRpbmcgYSBzZWNvbmQgdHJvbGxleSB3aXRoIG5hcHBpZXMgYW5kIGZvcm11bGEgZm9yIHRoZSBiYWJ5LgoKV2hlbiBJIHJlYWNoIHRoZSB0aWxscywgSSBqb2luIHRoZSBuZWFyZXN0IHF1ZXVlLCB3YWl0aW5nIGZvciBteSB0dXJuIHdoaWxlIHRoZSB3b21hbiBpbiBmcm9udCBsb2FkcyB0aGUgY29udmV5b3IgYmVsdCB3aXRoIHRoZSB3ZWVrbHkgc2hvcCBmb3IgaGVyIGZhbWlseTogcGFja2V0IGFmdGVyIHBhY2tldCBvZiBjZXJlYWwsIHBvd2RlciBmb3IgbWFraW5nIGNob2NvbGF0ZSBtaWxrLCBtb3JlIGJhZ3Mgb2YgY3Jpc3BzIHRoYW4geW91J2QgbmVlZCB0byBmZWVkIGFuIGFybXkuIFNoZSdzIG1vdmluZyBhdCBpbmNyZWRpYmxlIHNwZWVkLCBsaWtlIGEgY29udmV5b3IgYmVsdCBoZXJzZWxmLCBncmFiYmluZyB0aHJlZSBpdGVtcyBhdCBvbmNlIGFuZCBmbGluZ2luZyB0aGVtIGRvd24uIEkgbG9vayB0byBteSByaWdodCBhbmQgc2VlIHRoYXQgdGhlIHRpbGwgbmV4dCB0byBtZSBoYXMgYSBtdWNoIHNob3J0ZXIgcXVldWUsIGJ1dCBJJ20gaW4gbm8gcnVzaKB0b6BnZXSgaG9tZS4=';
 
 if (playGame) {
   submit.addEventListener('click', function (e) {
     e.preventDefault();
     const guess = parseInt(userInput.value);
-    console.log(guess); 
+    console.log(guess); // Debugging (can be removed)
     validateGuess(guess);
   });
 }
@@ -54,7 +53,7 @@ function validateGuess(guess) {
 
 function checkGuess(guess) {
   if (guess === randomNumber) {
-    displayMessage(atob(hiddenMessage2));
+    displayMessage(atob(hiddenMessage1));
     endGame();
   } else if (guess < randomNumber) {
     displayMessage(`Your Number is low`);
@@ -71,19 +70,12 @@ function displayGuess(guess) {
 }
 
 function displayMessage(message) {
-  const paragraphs = message.split('\n\n'); 
-  lowOrHi.innerHTML = ''; 
-  paragraphs.forEach((paragraph) => {
-    const paraElement = document.createElement('p');
-    paraElement.className = 'text-xl mb-4'; 
-    paraElement.textContent = paragraph;
-    lowOrHi.appendChild(paraElement); 
-  });
+  lowOrHi.innerHTML = `<h2 class="text-xl">${message}</h2>`;
 }
 
 function endGame() {
   userInput.value = '';
-  userInput.setAttribute('disabled', '');
+  userInput.setAttribute('disabled', '');z
   p.classList.add('button');
   p.innerHTML = `<h2 id="newGame" class="mt-4 border border-gray-400 rounded px-4 py-2 text-green-300 w-40 h-10 flex items-center justify-center mx-auto">Start new Game</h2>`;
   startOver.appendChild(p);
